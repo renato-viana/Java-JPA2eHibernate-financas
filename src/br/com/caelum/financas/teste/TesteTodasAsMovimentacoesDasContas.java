@@ -14,8 +14,9 @@ public class TesteTodasAsMovimentacoesDasContas {
 
 		EntityManager em = new JPAUtil().getEntityManager();
 		em.getTransaction().begin();
-
-		String jpql = "select c from Conta c join fetch c.movimentacoes";
+		
+		//Ao usar distinct dizemos ao banco que queremos apenas os resultados diferentes.
+		String jpql = "select distinct c from Conta c left join fetch c.movimentacoes";
 
 		Query query = em.createQuery(jpql);
 
